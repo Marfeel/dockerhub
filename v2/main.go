@@ -258,7 +258,7 @@ func (c *Client) DeletePersonalAccessToken(ctx context.Context, uuid string) err
 // --------
 func (c *Client) sendRequest(ctx context.Context, method string, url string, body []byte, result interface{}) error {
 
-	time.Sleep(250 * time.Millisecond)
+	time.Sleep(750 * time.Millisecond)
 
 	authJson, err := json.Marshal(c.auth)
 	if err != nil {
