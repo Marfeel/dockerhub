@@ -2,7 +2,7 @@
 
 # dockerhub
 
-[![go.dev](https://pkg.go.dev/badge/github.com/BarnabyShearer/dockerhub/)](https://pkg.go.dev/github.com/BarnabyShearer/dockerhub/v2)
+[![go.dev](https://pkg.go.dev/badge/github.com/Marfeel/dockerhub/)](https://pkg.go.dev/github.com/Marfeel/dockerhub/v2)
 
 Golang API client.
 
