@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"strconv"
 	"time"
 )
 
@@ -260,7 +261,12 @@ func (c *Client) DeletePersonalAccessToken(ctx context.Context, uuid string) err
 // --------
 func (c *Client) sendRequest(ctx context.Context, method string, url string, body []byte, result interface{}) error {
 
-	time.Sleep(time.Duration(c.SleepInterval) * time.Millisecond)
+	sleep_interval, err := strconv.Atoi(c.SleepInterval)
+	if err != nil {
+		panic(err)
+	}
+
+	time.Sleep(time.Duration(sleep_interval) * time.Millisecond)
 
 	authJson, err := json.Marshal(c.auth)
 	if err != nil {
