@@ -14,7 +14,7 @@ import (
 
 func TestReadRepository(t *testing.T) {
 	name := os.Getenv("DOCKER_TEST_REPO")
-	client := NewClient(os.Getenv("DOCKER_USERNAME"), os.Getenv("DOCKER_PASSWORD"))
+	client := NewClient(os.Getenv("DOCKER_USERNAME"), os.Getenv("DOCKER_PASSWORD"), os.Getenv("SLEEP_INTERVAL"))
 	repository, err := client.GetRepository(context.Background(), name)
 	if err != nil {
 		t.Fatalf(`Got error: %v`, err)
@@ -27,7 +27,7 @@ func TestReadRepository(t *testing.T) {
 func TestReadGroup(t *testing.T) {
 	organization_name := strings.Split(os.Getenv("DOCKER_REPOSITORY"), "/")[0]
 	group_id := "owners"
-	client := NewClient(os.Getenv("DOCKER_USERNAME"), os.Getenv("DOCKER_PASSWORD"))
+	client := NewClient(os.Getenv("DOCKER_USERNAME"), os.Getenv("DOCKER_PASSWORD"), os.Getenv("SLEEP_INTERVAL"))
 	group, err := client.GetGroup(context.Background(), organization_name, group_id)
 	if err != nil {
 		t.Fatalf(`Got error: %v`, err)
@@ -43,7 +43,7 @@ func TestReadGroup(t *testing.T) {
 func TestReadGroupFailure(t *testing.T) {
 	organization_name := strings.Split(os.Getenv("DOCKER_TEST_REPO"), "/")[0]
 	group_id := "unknowngroupnamehere"
-	client := NewClient(os.Getenv("DOCKER_USERNAME"), os.Getenv("DOCKER_PASSWORD"))
+	client := NewClient(os.Getenv("DOCKER_USERNAME"), os.Getenv("DOCKER_PASSWORD"), os.Getenv("SLEEP_INTERVAL"))
 	_, err := client.GetGroup(context.Background(), organization_name, group_id)
 	if err == nil {
 		t.Fatalf(`Did not get expected error`)
