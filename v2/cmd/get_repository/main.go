@@ -19,7 +19,7 @@ func main() {
 		flag.PrintDefaults()
 		os.Exit(1)
 	}
-	client := dockerhub.NewClient(os.Getenv("DOCKER_USERNAME"), os.Getenv("DOCKER_PASSWORD"))
+	client := dockerhub.NewClient(os.Getenv("DOCKER_USERNAME"), os.Getenv("DOCKER_PASSWORD"), os.Getenv("SLEEP_INTERVAL"))
 	repository, err := client.GetRepository(context.Background(), *nameFlag)
 	if err != nil {
 		log.Fatal(err)

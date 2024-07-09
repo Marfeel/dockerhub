@@ -25,13 +25,14 @@ type Token struct {
 }
 
 type Client struct {
-	BaseURL    string
-	auth       Auth
-	HTTPClient *http.Client
+	BaseURL       string
+	auth          Auth
+	HTTPClient    *http.Client
+	SleepInterval string
 }
 
 // Create the API client, providing the authentication.
-func NewClient(username string, password string) *Client {
+func NewClient(username string, password string, sleep_interval string) *Client {
 	return &Client{
 		BaseURL: BaseURLV2,
 		auth: Auth{
@@ -41,6 +42,7 @@ func NewClient(username string, password string) *Client {
 		HTTPClient: &http.Client{
 			Timeout: time.Minute,
 		},
+		SleepInterval: sleep_interval,
 	}
 }
 
@@ -258,7 +260,7 @@ func (c *Client) DeletePersonalAccessToken(ctx context.Context, uuid string) err
 // --------
 func (c *Client) sendRequest(ctx context.Context, method string, url string, body []byte, result interface{}) error {
 
-	time.Sleep(750 * time.Millisecond)
+	time.Sleep(time.Duration(c.SleepInterval) * time.Millisecond)
 
 	authJson, err := json.Marshal(c.auth)
 	if err != nil {
