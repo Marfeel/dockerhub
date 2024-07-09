@@ -6,3 +6,7 @@
 
 Golang API client.
 
+## Modifications
+
+We added [a sleep interval](https://github.com/Marfeel/dockerhub/blob/0e683c203c32eddbbd6afe1fa66985c5599ccd1b/v2/main.go#L261)
+for each request, as a cheap way to not hit the rate-limit of the API.
