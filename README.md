@@ -13,7 +13,7 @@ in _msecs_ for each request, as a cheap way to not hit the rate-limit of the API
 
 As of `v2.5.0`, it is also available as a provider parameter. Defaults to _750_.
 
-```tf
+```terraform
 provider "dockerhub" {
   sleep_interval = "1000"
 }
