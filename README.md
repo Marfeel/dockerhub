@@ -8,5 +8,13 @@ Golang API client.
 
 ## Modifications
 
-We added [a sleep interval](https://github.com/Marfeel/dockerhub/blob/0e683c203c32eddbbd6afe1fa66985c5599ccd1b/v2/main.go#L261)
-for each request, as a cheap way to not hit the rate-limit of the API.
+We added [a sleep interval](https://github.com/Marfeel/dockerhub/blob/994dd6e9fbdfc0a97fbd61d1a9be27163af90aa7/v2/main.go#L269)
+in _msecs_ for each request, as a cheap way to not hit the rate-limit of the API.
+
+As of `v2.5.0`, it is also available as a provider parameter. Defaults to _750_.
+
+```tf
+provider "dockerhub" {
+  sleep_interval = "1000"
+}
+```
